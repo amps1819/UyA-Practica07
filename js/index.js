@@ -72,7 +72,7 @@ $('#recogerF').submit(() => {
             document.getElementById('títuloRE').innerHTML = snapshot.val().título;
         }
         else {
-            document.getElementById('informacionRE').innerHTML = '<span class="red">No se ha podido leer la entrada. Error: no existe la entrada</span>';
+            document.getElementById('informacionRE').innerHTML = '<span class="red">No se ha podido leer la entrada. Error: no existe la entrada.</span>';
             // Le pongo un tapón a la respuesta para neutralizar el then y el catch
             return new Promise;
             //alert('TEST!');
