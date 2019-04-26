@@ -23,6 +23,19 @@ promesa.then(() => {
 });
 */
 
+function resetINS() {
+    document.getElementById('autor').value = '';
+    document.getElementById('año').value = '';
+    document.getElementById('título').value = '';
+}
+
+function resetREC() {
+    document.getElementById('autorRE').innerHTML = '';
+    document.getElementById('añoRE').innerHTML = '';
+    document.getElementById('títuloRE').innerHTML = '';
+}
+
+
 $('#insertarF').submit(() => {
     //Referencia a la entrada libros/[...]
     var entrada = document.getElementById('identificador').value;
@@ -37,6 +50,9 @@ $('#insertarF').submit(() => {
     }).catch(error => {
         document.getElementById('informacion').innerHTML = '<span class="red">No se ha podido introducir la entrada. '+error+'</span>';
     });
+
+    // Borro los datos del formulario de inserción
+    resetINS();
 
     // Para cancelar el submit
     return false;
@@ -66,6 +82,10 @@ $('#recogerF').submit(() => {
     }).catch(error => {
         document.getElementById('informacionRE').innerHTML = '<span class="red">No se ha podido leer la entrada. '+error+'</span>';
     });
+
+    // Borro los datos del formulario de recogida
+    resetREC();
+
 
     // Para cancelar el submit
     return false;
