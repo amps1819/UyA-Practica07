@@ -1,0 +1,15 @@
+body {
+	margin: 40px;
+	font-family: 'Ubuntu Mono', sans-serif;
+	color: black;
+	font-size: 1em;
+	font-weight: 300;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
