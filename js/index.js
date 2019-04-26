@@ -49,9 +49,9 @@ $('#recogerF').submit(() => {
 
     referencia.once('value', snapshot => {
         if (snapshot.val()) {
-            document.getElementById('autorRE').value = snapshot.val().autor;
-            document.getElementById('añoRE').value = snapshot.val().año;
-            document.getElementById('títuloRE').value = snapshot.val().título;
+            document.getElementById('autorRE').innerHTML = snapshot.val().autor;
+            document.getElementById('añoRE').innerHTML = snapshot.val().año;
+            document.getElementById('títuloRE').innerHTML = snapshot.val().título;
         }
         else {
             document.getElementById('informacionRE').innerHTML = '<span class="red">No se ha podido leer la entrada. Error: no existe la entrada</span>';
