@@ -86,7 +86,6 @@ $('#recogerF').submit(() => {
     // Borro los datos del formulario de recogida
     resetREC();
 
-
     // Para cancelar el submit
     return false;
 });
