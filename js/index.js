@@ -47,12 +47,11 @@ $('#insertarF').submit(() => {
         título: document.getElementById('título').value
     }).then(() => {
         document.getElementById('informacion').innerHTML = '<span class="green">Entrada introducida correctamente.</span>';
+        // Borro los datos del formulario de inserción
+        resetINS();
     }).catch(error => {
         document.getElementById('informacion').innerHTML = '<span class="red">No se ha podido introducir la entrada. '+error+'</span>';
     });
-
-    // Borro los datos del formulario de inserción
-    resetINS();
 
     // Para cancelar el submit
     return false;
@@ -62,6 +61,9 @@ $('#recogerF').submit(() => {
     // Referencia a la entrada libros/[...]
     var entrada = document.getElementById('identificadorRE').value;
     var referencia = database.ref(seccion+'/'+entrada);
+
+    // Borro los datos del formulario de recogida
+    resetREC();
 
     referencia.once('value', snapshot => {
         if (snapshot.val()) {
@@ -82,9 +84,6 @@ $('#recogerF').submit(() => {
     }).catch(error => {
         document.getElementById('informacionRE').innerHTML = '<span class="red">No se ha podido leer la entrada. '+error+'</span>';
     });
-
-    // Borro los datos del formulario de recogida
-    resetREC();
 
     // Para cancelar el submit
     return false;
