@@ -48,8 +48,11 @@ $('#recogerF').submit(() => {
     var referencia = database.ref(seccion+'/'+entrada);
 
     referencia.once('value', snapshot => {
-        if (snapshot.val())
-            alert(snapshot.val().toSource());
+        if (snapshot.val()) {
+            document.getElementById('autorRE').value = snapshot.val().autor;
+            document.getElementById('añoRE').value = snapshot.val().año;
+            document.getElementById('títuloRE').value = snapshot.val().título;
+        }
         else {
             document.getElementById('informacionRE').innerHTML = '<span class="red">No se ha podido leer la entrada. Error: no existe la entrada</span>';
             // Le pongo un tapón a la respuesta para neutralizar el then y el catch
