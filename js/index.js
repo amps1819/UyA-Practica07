@@ -24,7 +24,7 @@ promesa.then(() => {
 */
 
 function resetINS() {
-    document.getElementById('autor').value = '';
+    document.getElementById('autor').value = ''; 
     document.getElementById('año').value = '';
     document.getElementById('título').value = '';
 }
@@ -35,11 +35,35 @@ function resetREC() {
     document.getElementById('títuloRE').innerHTML = '';
 }
 
+function ayudaTextual() {
+    const flecha = '<==RELLENAR==';
+
+    if (document.getElementById('autor').value === ''){
+        document.getElementById('label1').innerText = flecha;
+    }
+    else{
+        document.getElementById('label1').innerText = '';
+    }
+    if (document.getElementById('año').value === ''){
+        document.getElementById('label2').innerText = flecha;
+    }
+    else{
+        document.getElementById('label2').innerText = '';
+    }
+    if (document.getElementById('título').value === ''){
+        document.getElementById('label3').innerText = flecha;
+    }
+    else{
+        document.getElementById('label3').innerText = '';
+    }
+}
 
 $('#insertarF').submit(() => {
     //Referencia a la entrada libros/[...]
     var entrada = document.getElementById('identificador').value;
     var referencia = database.ref(seccion+'/'+entrada);
+
+    ayudaTextual();
 
     referencia.set({
         autor: document.getElementById('autor').value,
@@ -101,9 +125,11 @@ referencia.on('value', (snapshot) => {
     "libros": {
     	"$libro": {
       	".read": true,
-		    ".write": true,
+        ".write": true,
+        // Comprueba que todas las entradas introducidas en /libros/ tengan los campos: autor, año y título y no estén vacíos
+        ".validate": "newData.child('autor').val() !== '' && newData.child('año').val() !== '' && newData.child('título').val() !== ''"
 				// Comprueba que todas las entradas dentro de /libros/ tengan los campos: autor, año y título
-        ".validate": "newData.hasChildren(['autor', 'año', 'título'])"
+        //".validate": "newData.hasChildren(['autor', 'año', 'título'])"
       }
     }
   }
