@@ -38,6 +38,12 @@ function resetREC() {
 function ayudaTextual() {
     const flecha = '<==RELLENAR==';
 
+    if (document.getElementById('identificador').value === ''){
+        document.getElementById('label0').innerText = flecha;
+    }
+    else{
+        document.getElementById('label0').innerText = '';
+    }
     if (document.getElementById('autor').value === ''){
         document.getElementById('label1').innerText = flecha;
     }
