@@ -64,6 +64,17 @@ function ayudaTextual() {
     }
 }
 
+function ayudaTextualRE() {
+    const flecha = '<==RELLENAR==';
+
+    if (document.getElementById('identificadorRE').value === ''){
+        document.getElementById('label0RE').innerText = flecha;
+    }
+    else{
+        document.getElementById('label0RE').innerText = '';
+    }
+}
+
 $('#insertarF').submit(() => {
     //Referencia a la entrada libros/[...]
     var entrada = document.getElementById('identificador').value;
@@ -94,6 +105,8 @@ $('#recogerF').submit(() => {
 
     // Borro los datos del formulario de recogida
     resetREC();
+
+    ayudaTextualRE();
 
     referencia.once('value', snapshot => {
         if (snapshot.val()) {
