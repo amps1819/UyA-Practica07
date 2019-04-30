@@ -24,7 +24,7 @@ promesa.then(() => {
 */
 
 function resetINS() {
-    document.getElementById('autor').value = ''; 
+    document.getElementById('autor').value = '';
     document.getElementById('año').value = '';
     document.getElementById('título').value = '';
 }
@@ -75,6 +75,20 @@ function ayudaTextualRE() {
     }
 }
 
+//Para evitar que introduzca libros cuyo año sea mayor que el actual
+function no_proximo_anho () {
+	const f = "<= ERROR: El año introducido es mayor que el año actual";
+
+	var fecha = new Date();
+	var anho = fecha.getFullYear();
+
+	if (document.getElementById('año').value > anho) {
+		document.getElementById('label2').innerText = f;
+
+		return false;
+	}
+}
+
 $('#insertarF').submit(() => {
     //Referencia a la entrada libros/[...]
     var entrada = document.getElementById('identificador').value;
@@ -82,17 +96,22 @@ $('#insertarF').submit(() => {
 
     ayudaTextual();
 
-    referencia.set({
-        autor: document.getElementById('autor').value,
-        año: document.getElementById('año').value,
-        título: document.getElementById('título').value
-    }).then(() => {
-        document.getElementById('informacion').innerHTML = '<span class="green">Entrada introducida correctamente.</span>';
-        // Borro los datos del formulario de inserción
-        resetINS();
-    }).catch(error => {
-        document.getElementById('informacion').innerHTML = '<span class="red">No se ha podido introducir la entrada. '+error+'</span>';
-    });
+    var pasa = no_proximo_anho ();
+
+    if (pasa != false) {
+
+    	referencia.set({
+        	autor: document.getElementById('autor').value,
+        	año: document.getElementById('año').value,
+        	título: document.getElementById('título').value
+    	}).then(() => {
+        	document.getElementById('informacion').innerHTML = '<span class="green">Entrada introducida correctamente.</span>';
+        	// Borro los datos del formulario de inserción
+        	resetINS();
+    	}).catch(error => {
+        	document.getElementById('informacion').innerHTML = '<span class="red">No se ha podido introducir la entrada. '+error+'</span>';
+    	});
+	   }
 
     // Para cancelar el submit
     return false;
@@ -154,3 +173,5 @@ referencia.on('value', (snapshot) => {
   }
 }
 */
+
+console.log();
