@@ -24,9 +24,9 @@ $('#login').submit(() => {
     });
 
     // Simulate a mouse click:
-    //window.location.href = "./form.html";
+    window.location.href = "./form.html";
     // Simulate an HTTP redirect:
-    window.location.replace("./form.html");
+    //window.location.replace("./form.html");
     
     // Para cancelar el submit
     return false;
